@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bikers For Christ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #f8b432, #f1a429);
+      color: black;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.85);
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      padding: 15px 30px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      color: yellow;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #f8b432;
+      letter-spacing: 1px;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5em;
+      color: white;
+      cursor: pointer;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+      position: relative;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav ul li a i {
+      margin-right: 8px;
+    }
+
+    nav ul li a:hover {
+      color: yellow;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.95);
+      min-width: 180px;
+      top: 40px;
+      left: 0;
+      border-radius: 8px;
+      z-index: 1001;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 10px 15px;
+      display: block;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #222;
+      color: yellow;
+    }
+
+    .show-dropdown .dropdown-content {
+      display: block;
+    }
+
+    .center-image {
+      display: block;
+      margin: 120px auto 20px;
+      max-width: 300px;
+      width: 80%;
+    }
+
+    .center-text {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.4em;
+      font-family: 'Playfair Display', serif;
+      color: black;
+      line-height: 1.6;
+    }
+
+    .ride-button {
+      position: fixed;
+      bottom: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #f8b432;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 999;
+      text-decoration: none;
+    }
+
+    .ride-button:hover {
+      background-color: rgba(34, 34, 34, 0.85);
+    }
+
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .social-icons a {
+      color: black;
+      font-size: 1.6em;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #333;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      .dropdown-content {
+        position: static;
+        background-color: transparent;
+        box-shadow: none;
+        padding-left: 30px;
+      }
+
+      .social-icons {
+        flex-direction: row;
+        left: 10px;
+        bottom: 20px;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Bikers For Christ</div>
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fa fa-bars"></i></div>
+    <ul id="nav-menu">
+      <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li class="about-dropdown">
+        <a onclick="toggleDropdown(event)"><i class="fa-solid fa-users"></i> About</a>
+        <div class="dropdown-content">
+          <a href="Admin Team.html">Admin Team</a>
+          <a href="about.html#our-mission">Our Mission</a>
+        </div>
+      </li>
+      <li><a href="#"><i class="fa-solid fa-book"></i> History</a></li>
+      <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Center Logo Image -->
+  <img src="BFC Logo.jpg" alt="Bikers For Christ Logo" class="center-image" />
+
+  <!-- Descriptive Text -->
+  <div class="center-text">
+    We’re 13 spirited riders from various parish youth groups, fueled by faith and friendship. We ride for chai, churches, and a cause. As we grow in numbers, we’re looking for more like-minded riders to join our journey of faith, friendship, and adventure — come be part of the ride!
+  </div>
+
+  <!-- Ride With Us Button -->
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdk7ucwveEKT7dFvKiOYL6dr7Rvp5kjnR_0yajdAgGzZE_Kew/viewform" target="_blank" class="ride-button">
+    Ride with Us
+  </a>
+
+  <!-- Social Media Icons -->
+  <div class="social-icons">
+    <a href="https://www.instagram.com/bikers_for_christ?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      menu.classList.toggle('active');
+    }
+
+    function toggleDropdown(event) {
+      const dropdown = event.currentTarget.parentElement;
+      dropdown.classList.toggle('show-dropdown');
+      event.stopPropagation();
+    }
+
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('.about-dropdown').forEach(item => {
+        if (!item.contains(e.target)) {
+          item.classList.remove('show-dropdown');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
